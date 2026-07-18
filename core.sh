@@ -35,9 +35,14 @@ log_ok() {
 }
 
 create_sym_link() {
-    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"                                                                                                                       
+    local SCRIPT_DIR=$(get_script_dir)
     local SRC_FILE="$SCRIPT_DIR/$1"
     local LINKED_FILE="$2"
 
     ln -s "$SRC_FILE" "$LINKED_FILE"
+}
+
+get_script_dir() {
+    # bash doesnt really have returns
+    echo "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 }
