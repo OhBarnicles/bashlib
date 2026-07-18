@@ -1,3 +1,12 @@
+# Self-documenting library, gets all functions
+help_lib() {
+    grep -E '^[a-z_]+\(\)' "${LIB_PATH:-/opt/bashlib}/core.sh" | sed 's/() {//'
+}
+
+require_root() {
+    [[ $EUID -eq 0 ]] || { echo "This script must be run as root." >&2; exit 1; }
+}
+
 # colors
 RED="\033[0;31m"
 YELLOW="\033[0;33m"
@@ -24,10 +33,3 @@ log_info() {
 log_ok() {
     format_status "${GREEN}" "+" "$1"
 }
-
-
-# color output
-#log_info()  { echo -e "${BLUE}[*]${NC} $1"; }
-#log_ok()    { echo -e "${GREEN}[+]${NC} $1"; }
-#log_warn()  { echo -e "${YELLOW}[!]${NC} $1"; }
-#log_err()   { echo -e "${RED}[-]${NC} $1"; }
