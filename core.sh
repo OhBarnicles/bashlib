@@ -1,6 +1,6 @@
 # Self-documenting library, gets all functions
 help_lib() {
-    grep -E '^[a-z_]+\(\)' "${LIB_PATH:-/opt/bashlib}/core.sh" | sed 's/() {//'
+    grep -E '^[a-z_]+\(\)' "${LIB_PATH:-$HOME/.local/bin/bashlib}/core.sh" | sed 's/() {//'
 }
 
 require_root() {
