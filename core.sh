@@ -33,3 +33,11 @@ log_info() {
 log_ok() {
     format_status "${GREEN}" "+" "$1"
 }
+
+create_sym_link() {
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"                                                                                                                       
+    local SRC_FILE="$SCRIPT_DIR/$1"
+    local LINKED_FILE="$2"
+
+    ln -s "$SRC_FILE" "$LINKED_FILE"
+}
